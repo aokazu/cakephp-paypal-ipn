@@ -1,0 +1,42 @@
+{
+	"name": "otoso/cakephp-paypal-ipn",
+	"description": "A cakephp plugin for creating simple paypal forms and handling the ipn",
+	"type": "cakephp-plugin",
+	"keywords": [
+		"cakephp",
+		"paypal",
+		"ipn"
+	],
+	"homepage": "https://github.com/otoso/cakephp-paypal-ipn",
+	"license": "MIT",
+	"authors": [
+		{
+			"name": "Dominik Schmelz",
+			"homepage": "http://www.otoso.net",
+			"role": "Author"
+		}
+	],
+	"support": {
+		"issues": "https://github.com/otoso/cakephp-paypal-ipn/issues",
+		"source": "https://github.com/otoso/cakephp-paypal-ipn"
+	},
+	"require": {
+		"php": ">=7.0.6",
+		"cakephp/cakephp": "~3.0"
+	},
+	"require-dev": {
+		"phpunit/phpunit": "*",
+		"fig-r/psr2r-sniffer": "dev-master"
+	},
+	"autoload": {
+		"psr-4": {
+			"PaypalIpn\\": "src"
+		}
+	},
+	"autoload-dev": {
+		"psr-4": {
+			"PaypalIpn\\Test\\": "tests",
+			"Cake\\Test\\": "./vendor/cakephp/cakephp/tests"
+		}
+	}
+}
