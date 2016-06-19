@@ -2,6 +2,8 @@
 use Cake\Core\Plugin;
 use Cake\Routing\DispatcherFactory;
 
+defined('DS') or define('DS', DIRECTORY_SEPARATOR);
+
 if (!defined('WINDOWS')) {
 	if (DS === '\\' || substr(PHP_OS, 0, 3) === 'WIN') {
 		define('WINDOWS', true);
