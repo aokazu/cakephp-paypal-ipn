@@ -54,6 +54,10 @@ class PaypalIpnRequestComponent extends Component
 
 	use EventDispatcherTrait;
 
+	/**
+	 * Dispatch a paypal event to listeners.
+	 * @param $message
+	 */
 	public function dispatchEvent($message)
 	{
 		$message_type = $message['txn_type'];
@@ -67,7 +71,9 @@ class PaypalIpnRequestComponent extends Component
 	}
 
 	/**
-	 * Send the object to paypal to check the
+	 * Send the object to paypal to check the data received.
+	 * @param $data
+	 * @return bool
 	 */
 	public function validate($data)
 	{
@@ -91,6 +97,7 @@ class PaypalIpnRequestComponent extends Component
 	}
 
 	/**
+	 * Execute a query against Paypal.
 	 * @param $data
 	 * @return mixed
 	 * @internal param $http
