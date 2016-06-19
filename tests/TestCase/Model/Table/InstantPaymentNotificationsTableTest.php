@@ -25,14 +25,6 @@ class InstantPaymentNotificationsTableTest extends TestCase
 	 */
 	public $fixtures = [
 		'plugin.paypal_ipn.instant_payment_notifications',
-		'plugin.paypal_ipn.payers',
-		'plugin.paypal_ipn.receivers',
-		'plugin.paypal_ipn.auths',
-		'plugin.paypal_ipn.parent_txns',
-		'plugin.paypal_ipn.txns',
-		'plugin.paypal_ipn.auction_buyers',
-		'plugin.paypal_ipn.subscrs',
-		'plugin.paypal_ipn.cases',
 		'plugin.paypal_ipn.paypal_items'
 	];
 
