@@ -31,7 +31,7 @@ before_script:
   - set +H
   - cp phpunit.xml.dist phpunit.xml
 
-  - sh bin/cake migrations migrate
+  - sh -c bin/cake migrations migrate
 
 script:
   - sh -c "if [ '$COVERALLS' = '1' ]; then phpunit --coverage-clover build/logs/clover.xml; fi"
