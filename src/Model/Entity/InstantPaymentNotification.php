@@ -6,7 +6,7 @@ use Cake\ORM\Entity;
 /**
  * InstantPaymentNotification Entity.
  *
- * @property string $id
+ * @property int $id
  * @property string $notify_version
  * @property string $verify_sign
  * @property int $test_ipn

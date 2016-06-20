@@ -545,17 +545,12 @@ class Initial extends AbstractMigration
 			->create();
 
 
-		$table = $this->table('paypal_items', ['id' => false, 'primary_key' => ['id']]);
+		$table = $this->table('paypal_items');
 		$table
-			->addColumn('id', 'string', [
+			->addColumn('instant_payment_notification_id', 'integer', [
 				'default' => null,
-				'limit' => 36,
-				'null' => false,
-			])
-			->addColumn('instant_payment_notification_id', 'string', [
-				'default' => null,
-				'limit' => 36,
-				'null' => false,
+				'limit' => 11,
+				'null' => true,
 			])
 			->addColumn('item_name', 'string', [
 				'default' => null,
