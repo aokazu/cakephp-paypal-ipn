@@ -116,7 +116,7 @@ class InstantPaymentNotification extends Entity
 	 */
 	protected $_accessible = [
 		'*' => true,
-		'id' => false,
+		'id' => true,
 		'created' => false,
 		'modified' => false
 	];

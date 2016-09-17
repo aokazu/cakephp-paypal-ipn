@@ -41,7 +41,7 @@ class InstantPaymentNotificationsController extends Controller
 	public function process()
 	{
 		$this->autoRender = false;
-		//$this->loadComponent('PaypalIpnRequest');
+		$this->loadComponent('PaypalIpn.PaypalIpnRequest');
 		if ($this->PaypalIpnRequest->validate($this->request->data)) {
 			$instantPaymentNotification = $this->InstantPaymentNotifications->newEntity($this->request->data);
 
