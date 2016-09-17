@@ -82,7 +82,7 @@ Cake\Cache\Cache::config($cache);
 DispatcherFactory::add('Routing');
 Plugin::load('Utils', ['path' => ROOT, 'bootstrap' => false, 'routes' => true]);
 Plugin::load('CakeManager', ['path' => ROOT, 'bootstrap' => false, 'routes' => true]);
-Cake\Core\Plugin::load('PayPalIpn', ['path' => ROOT . DS, 'bootstrap' => true]);
+Cake\Core\Plugin::load('PaypalIpn', ['path' => ROOT . DS, 'bootstrap' => true]);
 
 
 // Ensure default test connection is defined
