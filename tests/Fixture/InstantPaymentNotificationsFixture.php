@@ -11,7 +11,7 @@ class InstantPaymentNotificationsFixture extends TestFixture
 {
 
     public $fields = [
-        'id' => ['type' => 'string', 'length' => 36, 'null' => false, 'default' => null, 'collate' => 'utf8_unicode_ci', 'comment' => '', 'precision' => null, 'fixed' => null],
+        'id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'autoIncrement' => true, 'precision' => null],
         'notify_version' => ['type' => 'string', 'length' => 64, 'null' => true, 'default' => null, 'collate' => 'utf8_unicode_ci', 'comment' => 'IPN Version Number', 'precision' => null, 'fixed' => null],
         'verify_sign' => ['type' => 'string', 'length' => 127, 'null' => true, 'default' => null, 'collate' => 'utf8_unicode_ci', 'comment' => 'Encrypted string used to verify the authenticityof the tansaction', 'precision' => null, 'fixed' => null],
         'test_ipn' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
@@ -118,7 +118,7 @@ class InstantPaymentNotificationsFixture extends TestFixture
      */
     public $records = [
         [
-            'id' => '53f0dfaf-ec8c-4310-a65f-7a8e5f8facdb',
+            'id' => '1',
             'notify_version' => '3.8',
             'verify_sign' => 'AnNMT7nRteKS2auTkxdsRz9rRvvPA5iCzumgz-NvNzySHi3v2PxrJhPr',
             'test_ipn' => '1',
@@ -211,7 +211,7 @@ class InstantPaymentNotificationsFixture extends TestFixture
             'modified' => '2014-08-17 19:00:31'
         ],
         [
-            'id' => '53f0e44a-9eac-4d53-be38-7a8f5f8facdb',
+            'id' => '2',
             'notify_version' => '3.8',
             'verify_sign' => 'AQU0e5vuZCvSg-XJploSa.sGUDlpAIXef.GOLVTP.aEcQLsTcdVaYfcY',
             'test_ipn' => '1',
@@ -304,7 +304,7 @@ class InstantPaymentNotificationsFixture extends TestFixture
             'modified' => '2014-08-17 19:20:10'
         ],
         [
-            'id' => '53f0e457-5bb0-4f75-9764-7a8f5f8facdb',
+            'id' => '3',
             'notify_version' => '3.8',
             'verify_sign' => 'AQU0e5vuZCvSg-XJploSa.sGUDlpAIXef.GOLVTP.aEcQLsTcdVaYfcY',
             'test_ipn' => '1',
@@ -397,7 +397,7 @@ class InstantPaymentNotificationsFixture extends TestFixture
             'modified' => '2014-08-17 19:20:23'
         ],
         [
-            'id' => '53f0e46c-2894-4489-8f6c-1c795f8facdb',
+            'id' => '4',
             'notify_version' => '3.8',
             'verify_sign' => 'AQU0e5vuZCvSg-XJploSa.sGUDlpAIXef.GOLVTP.aEcQLsTcdVaYfcY',
             'test_ipn' => '1',
@@ -490,7 +490,7 @@ class InstantPaymentNotificationsFixture extends TestFixture
             'modified' => '2014-08-17 19:20:44'
         ],
         [
-            'id' => '53f0e497-79d0-484c-bbfa-66fe5f8facdb',
+            'id' => '5',
             'notify_version' => '3.8',
             'verify_sign' => 'AQU0e5vuZCvSg-XJploSa.sGUDlpAIXef.GOLVTP.aEcQLsTcdVaYfcY',
             'test_ipn' => '1',
@@ -583,7 +583,7 @@ class InstantPaymentNotificationsFixture extends TestFixture
             'modified' => '2014-08-17 19:21:27'
         ],
         [
-            'id' => '53f0e4ea-0bb4-4911-9bf8-4ceb5f8facdb',
+            'id' => '6',
             'notify_version' => '3.8',
             'verify_sign' => 'AQU0e5vuZCvSg-XJploSa.sGUDlpAIXef.GOLVTP.aEcQLsTcdVaYfcY',
             'test_ipn' => '1',
@@ -676,7 +676,7 @@ class InstantPaymentNotificationsFixture extends TestFixture
             'modified' => '2014-08-17 19:22:50'
         ],
         [
-            'id' => '53f0e58f-3128-4741-a015-66fe5f8facdb',
+            'id' => '7',
             'notify_version' => '3.8',
             'verify_sign' => 'AQU0e5vuZCvSg-XJploSa.sGUDlpAIXef.GOLVTP.aEcQLsTcdVaYfcY',
             'test_ipn' => '1',
@@ -769,7 +769,7 @@ class InstantPaymentNotificationsFixture extends TestFixture
             'modified' => '2014-08-17 19:25:34'
         ],
         [
-            'id' => '53f0e6d1-2640-407c-8e95-380a5f8facdb',
+            'id' => '8',
             'notify_version' => '3.8',
             'verify_sign' => 'AQU0e5vuZCvSg-XJploSa.sGUDlpAIXef.GOLVTP.aEcQLsTcdVaYfcY',
             'test_ipn' => '1',
@@ -862,7 +862,7 @@ class InstantPaymentNotificationsFixture extends TestFixture
             'modified' => '2014-08-17 19:30:57'
         ],
         [
-            'id' => '53f0e958-9a5c-42e9-84db-38095f8facdb',
+            'id' => '9',
             'notify_version' => '3.8',
             'verify_sign' => 'AQU0e5vuZCvSg-XJploSa.sGUDlpAIXef.GOLVTP.aEcQLsTcdVaYfcY',
             'test_ipn' => '1',
@@ -955,7 +955,7 @@ class InstantPaymentNotificationsFixture extends TestFixture
             'modified' => '2014-08-17 19:41:44'
         ],
         [
-            'id' => '53f0ee5e-698c-4b28-9afe-380d5f8facdb',
+            'id' => '10',
             'notify_version' => '3.8',
             'verify_sign' => 'AQU0e5vuZCvSg-XJploSa.sGUDlpAIXef.GOLVTP.aEcQLsTcdVaYfcY',
             'test_ipn' => '1',

@@ -6,9 +6,8 @@ class Initial extends AbstractMigration
 	public function up()
 	{
 
-        $table = $this->table('instant_payment_notifications', ['id' => false, 'primary_key' => ['id']]);
+        $table = $this->table('instant_payment_notifications');
         $table
-            ->addColumn('id', 'uuid')
 			->addColumn('notify_version', 'string', [
 				'comment' => 'IPN Version Number',
 				'default' => null,

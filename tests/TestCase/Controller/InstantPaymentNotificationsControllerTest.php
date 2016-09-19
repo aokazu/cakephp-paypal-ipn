@@ -29,7 +29,6 @@ class InstantPaymentNotificationsControllerTest extends IntegrationTestCase
 
     private $test_request =
         [
-            'id' => '53f0e6d1-2640-407c-8e95-380a5f8f2345',
             'payment_type' => 'instant',
             'payment_date' => 'Mon Jun 06 2016 23:08:00 GMT 0200 (W. Europe Daylight Time)',
             'payment_status' => 'Completed',
