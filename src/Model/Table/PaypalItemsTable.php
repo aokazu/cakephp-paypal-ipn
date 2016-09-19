@@ -58,7 +58,7 @@ class PaypalItemsTable extends Table
 	 */
 	public function buildRules(RulesChecker $rules)
 	{
-		$rules->add($rules->existsIn(['instant_payment_notification_id'], 'InstantPaymentNotifications'));
+		//$rules->add($rules->existsIn(['instant_payment_notification_id'], 'InstantPaymentNotifications'));
 		return $rules;
 	}
 }

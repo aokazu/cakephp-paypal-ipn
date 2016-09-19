@@ -5,6 +5,7 @@ use Cake\Controller\Controller;
 use Cake\Event\Event;
 use Cake\Log\LogTrait;
 use Cake\Network\Exception\InternalErrorException;
+use Cake\ORM\TableRegistry;
 use PaypalIpn\Controller\Component\PaypalIpnRequestComponent;
 use PaypalIpn\Model\Entity\InstantPaymentNotification;
 use Psr\Log\LogLevel;
@@ -20,54 +21,63 @@ use Psr\Log\LogLevel;
 class InstantPaymentNotificationsController extends Controller
 {
 
-	use LogTrait;
+    use LogTrait;
 
-	public $helpers = array('Html', 'Form');
+    public $helpers = array('Html', 'Form');
 
-	/**
-	 * @param Event $event
-	 * @return \Cake\Network\Response|null|void
-	 */
-	public function beforeFilter(Event $event)
-	{
-		if (isset($this->Auth)) {
-			$this->Auth->allow('process');
-		}
-	}
+    public function initialize()
+    {
+        parent::initialize();
+        $this->loadModel('PaypalIpn.InstantPaymentNotifications');
 
-	/**
-	 * Paypal IPN processing
-	 */
-	public function process()
-	{
-		$this->autoRender = false;
-		$this->loadComponent('PaypalIpn.PaypalIpnRequest');
-		if ($this->PaypalIpnRequest->validate($this->request->data)) {
-			$instantPaymentNotification = $this->InstantPaymentNotifications->newEntity($this->request->data);
+        $this->loadComponent('PaypalIpn.PaypalIpnRequest');
+    }
 
-			if (!is_int($this->request->data('num_cart_items')) && $this->request->data('num_cart_items') > 0) {
-				$items = [];
-				for ($i = 1; $i <= $this->request->data('num_cart_items'); $i++) {
-					$key = $i - 1;
-					$items[$key]['item_name'] = $this->request->data("item_name{$i}");
-					$items[$key]['item_number'] = $this->request->data("item_number{$i}");
-					$items[$key]['item_number'] = $this->request->data("item_number{$i}");
-					$items[$key]['quantity'] = $this->request->data("quantity{$i}");
-					$items[$key]['mc_shipping'] = $this->request->data("mc_shipping{$i}");
-					$items[$key]['mc_handling'] = $this->request->data("mc_handling{$i}");
-					$items[$key]['mc_gross'] = $this->request->data("mc_gross_{$i}");
-					$items[$key]['tax'] = $this->request->data("tax{$i}");
-				}
-				$this->InstantPaymentNotifications->PaypalItems = $items;
-			}
+    /**
+     * @param Event $event
+     * @return \Cake\Network\Response|null|void
+     */
+    public function beforeFilter(Event $event)
+    {
+        if (isset($this->Auth)) {
+            $this->Auth->allow('process');
+        }
+    }
 
-			if (!$this->InstantPaymentNotifications->save($instantPaymentNotification)) {
-				$this->log('Error saving the IPON to database. Request was: ' . var_export($this->request->data(), true));
-				throw new InternalErrorException('Could not save the IPN');
-			}
-			$this->PaypalIpnRequest->dispatchEvent($this->request->data);
-		} else {
-			$this->log('Received an invalid Request from paypal', LogLevel::ERROR, 'PayPal');
-		}
-	}
+    /**
+     * Paypal IPN processing
+     */
+    public function process()
+    {
+        //     $this->InstantPaymentNotifications = TableRegistry::get('PaypalIpn.InstantPaymentNotifications');
+
+        $this->autoRender = false;
+        if ($this->PaypalIpnRequest->validate($this->request->data)) {
+            $instantPaymentNotification = $this->request->data;
+            if (!is_int($this->request->data('num_cart_items')) && $this->request->data('num_cart_items') > 0) {
+                for ($i = 1; $i <= $this->request->data('num_cart_items'); $i++) {
+                    $item = [];
+                    $item['item_name'] = $this->request->data("item_name{$i}");
+                    $item['item_number'] = $this->request->data("item_number{$i}");
+                    $item['quantity'] = $this->request->data("quantity{$i}");
+                    $item['mc_shipping'] = $this->request->data("mc_shipping{$i}");
+                    $item['mc_handling'] = $this->request->data("mc_handling{$i}");
+                    $item['mc_gross'] = $this->request->data("mc_gross_{$i}");
+                    $item['tax'] = $this->request->data("tax{$i}");
+                  //  $item_entity = $this->InstantPaymentNotifications->PaypalItems->newEntity($item);
+                    $instantPaymentNotification['paypal_items'][] = $item;
+                }
+            }
+
+            $ipn_entity = $this->InstantPaymentNotifications->newEntity($instantPaymentNotification);
+
+            if (!$this->InstantPaymentNotifications->save($ipn_entity)) {
+                $this->log('Error saving the IPON to database. Request was: ' . var_export($this->request->data(), true));
+                throw new InternalErrorException('Could not save the IPN');
+            }
+            $this->PaypalIpnRequest->dispatchEvent($this->request->data);
+        } else {
+            $this->log('Received an invalid Request from paypal', LogLevel::ERROR, 'PayPal');
+        }
+    }
 }
