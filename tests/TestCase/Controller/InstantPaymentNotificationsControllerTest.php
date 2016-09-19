@@ -88,23 +88,6 @@ class InstantPaymentNotificationsControllerTest extends IntegrationTestCase
 
     public function testProcess()
     {
-/*
-                $request = new Request(['post' => $this->test_request]);
-                $this->_response = new Response();
-                $controller = new InstantPaymentNotificationsController($request, $this->_response);
-
-                $registry = new ComponentRegistry($controller);
-
-
-                $mocko = new PHPUnit_Framework_MockObject_Generator();
-                $controller->PaypalIpnRequest = $mocko->getMockForAbstractClass('PaypalIpn\Controller\Component\PaypalIpnRequestComponent', [$registry], 'PaypalIpnRequestComponent_Mock', true, false, false, ['validate']);
-        //        $controller->PaypalIpnRequest = $this->createMock('PaypalIpn\Controller\Component\PaypalIpnRequestComponent');
-
-                $controller->PaypalIpnRequest->expects($this->once())
-                    ->method('validate')
-                    ->will($this->returnValue(true));
-*/
-
         $this->PaypalItems = TableRegistry::get('PaypalIpn.PaypalItems');
         $items_before = $this->PaypalItems->find('all')->count();
 
@@ -112,8 +95,6 @@ class InstantPaymentNotificationsControllerTest extends IntegrationTestCase
         $notifications_before = $this->InstantPaymentNotifications->find()->all()->count();
 
         $this->post('/paypal_ipn/InstantPaymentNotifications/process',$this->test_request);
-
-     //      $controller->process();
 
         $notifications_after = $this->InstantPaymentNotifications->find()->all()->count();
         $this->assertEquals($notifications_before+1, $notifications_after);
@@ -123,6 +104,4 @@ class InstantPaymentNotificationsControllerTest extends IntegrationTestCase
 
         $this->assertResponseSuccess();
     }
-
-
 }

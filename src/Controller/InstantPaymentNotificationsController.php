@@ -49,8 +49,6 @@ class InstantPaymentNotificationsController extends Controller
      */
     public function process()
     {
-        //     $this->InstantPaymentNotifications = TableRegistry::get('PaypalIpn.InstantPaymentNotifications');
-
         $this->autoRender = false;
         if ($this->PaypalIpnRequest->validate($this->request->data)) {
             $instantPaymentNotification = $this->request->data;
@@ -64,7 +62,6 @@ class InstantPaymentNotificationsController extends Controller
                     $item['mc_handling'] = $this->request->data("mc_handling{$i}");
                     $item['mc_gross'] = $this->request->data("mc_gross_{$i}");
                     $item['tax'] = $this->request->data("tax{$i}");
-                  //  $item_entity = $this->InstantPaymentNotifications->PaypalItems->newEntity($item);
                     $instantPaymentNotification['paypal_items'][] = $item;
                 }
             }
