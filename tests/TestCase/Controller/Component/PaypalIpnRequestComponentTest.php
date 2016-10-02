@@ -95,7 +95,7 @@ class PaypalIpnRequestComponentTest extends TestCase
 
 	public function testValidate()
 	{
-		$this->mockPayPalResponse('VERIFIED');
+		$this->mockPayPalResponse('VERIFIED', 200);
 
 		$result = $this->PaypalIpnRequest->validate([]);
 		$this->assertTrue($result);
@@ -104,9 +104,9 @@ class PaypalIpnRequestComponentTest extends TestCase
 	/**
 	 * @param $answer
 	 */
-	private function mockPayPalResponse($answer)
+	private function mockPayPalResponse($answer, $code)
 	{
-		$response = new Response([], $answer);
+		$response = ['body' => $answer, 'code' => $code];
 
 		$this->PaypalIpnRequest->expects($this->once())
 			->method('queryPayPal')
