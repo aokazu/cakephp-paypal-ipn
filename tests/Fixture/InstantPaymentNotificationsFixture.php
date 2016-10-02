@@ -105,11 +105,11 @@ class InstantPaymentNotificationsFixture extends TestFixture
 		'_constraints' => [
 			'primary' => ['type' => 'primary', 'columns' => ['id'], 'length' => []],
 		],
-		'_options' => [
-			'engine' => 'InnoDB',
-			'charset' => 'utf8',
-			'collation' => 'utf8_unicode_ci'
-		],
+//		'_options' => [
+//			'engine' => 'InnoDB',
+//			'charset' => 'utf8',
+//			'collation' => 'utf8_unicode_ci'
+//		],
 	];
 
 	/**
