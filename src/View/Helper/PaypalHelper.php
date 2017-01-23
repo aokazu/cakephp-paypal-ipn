@@ -74,9 +74,9 @@ class PaypalHelper extends Helper
 	function button($title, $options = [], $buttonOptions = [])
 	{
 		$options = $this->getIpnConfig($options);
-		$encryption = $options['encrypt'];
+		$encryption = $options['encrypt'] ?? false;
 
-		$options['type'] = (isset($options['type'])) ? $options['type'] : "paynow";
+		$options['type'] = $options['type'] ?? "paynow";
 
 		switch ($options['type']) {
 			case 'subscribe':   // Subscribe
@@ -151,7 +151,7 @@ class PaypalHelper extends Helper
 	private function getIpnConfig($options)
 	{
 
-		$test_mode = Configure::read('PayPalIpn.test_mode') || $options['test_mode'] || $this->config('test_mode');
+		$test_mode = Configure::read('PayPalIpn.test_mode') || (isset($options['test_mode']) && $options['test_mode'] == true) || $this->config('test_mode');
 
 		if ($test_mode) {
 			$config_file = Configure::read('PayPalIpn.test');
