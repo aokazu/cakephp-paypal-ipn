@@ -69,6 +69,8 @@ class InstantPaymentNotificationsController extends Controller
 				}
 			}
 
+			$this->utf8_encode_deep($instantPaymentNotification);
+
 			$ipn_entity = $this->InstantPaymentNotifications->newEntity($instantPaymentNotification);
 
 			$ipn_save_result = false;
@@ -86,6 +88,30 @@ class InstantPaymentNotificationsController extends Controller
 			$this->PaypalIpnRequest->dispatchEvent($this->request->data);
 		} else {
 			$this->log('Received an invalid Request from paypal', LogLevel::ERROR, 'PayPal');
+		}
+	}
+
+
+	/**
+	 * Converts an input to UTF8
+	 *
+	 * @param $input string|array|object
+	 */
+	private function utf8_encode_deep(&$input) {
+		if (is_string($input)) {
+			if  (mb_detect_encoding($input, 'UTF-8', true)) return;
+			$input = utf8_encode($input);
+		} else if (is_array($input)) {
+			foreach ($input as &$value) {
+				$this->utf8_encode_deep($value);
+			}
+
+			unset($value);
+		} else if (is_object($input)) {
+			$vars = array_keys(get_object_vars($input));
+			foreach ($vars as $var) {
+				$this->utf8_encode_deep($input->$var);
+			}
 		}
 	}
 }
