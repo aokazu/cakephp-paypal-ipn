@@ -9,6 +9,7 @@ use Cake\Network\Exception\InternalErrorException;
 use Cake\ORM\TableRegistry;
 use PaypalIpn\Controller\Component\PaypalIpnRequestComponent;
 use PaypalIpn\Model\Entity\InstantPaymentNotification;
+use PDOException;
 use Psr\Log\LogLevel;
 
 
@@ -70,8 +71,16 @@ class InstantPaymentNotificationsController extends Controller
 
 			$ipn_entity = $this->InstantPaymentNotifications->newEntity($instantPaymentNotification);
 
-			if (!$this->InstantPaymentNotifications->save($ipn_entity)) {
-				$this->log('Error saving the IPON to database. Request was: ' . var_export($this->request->data(), true));
+			$ipn_save_result = false;
+			try {
+				$ipn_save_result = $this->InstantPaymentNotifications->save($ipn_entity);
+			} catch (PDOException $ex) {
+				$this->log('Fatal PDO Exception. Request was: ' . var_export($this->request->data(), true));
+				throw $ex;
+			}
+
+			if (!$ipn_save_result) {
+				$this->log('Error saving the IPN to database. Request was: ' . var_export($this->request->data(), true));
 				throw new InternalErrorException('Could not save the IPN');
 			}
 			$this->PaypalIpnRequest->dispatchEvent($this->request->data);
