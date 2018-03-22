@@ -1,6 +1,6 @@
 <?php
 return [
-	'PayPalIpn' => [ //General configurations. All of it can be overwritten by Hepler Config or options on the button call
+	'PayPalIpn' => [ //General configurations. All of it can be overwritten by Helper Config or options on the button call
 		'test_mode' => true, //override to set all buttons in test mode
 		'prod' => [ //configuration for real buttons
 			'business' => 'live_email@paypal.com',    //Your Paypal email account
