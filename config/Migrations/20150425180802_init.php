@@ -217,7 +217,6 @@ class Init extends AbstractMigration
 			->addColumn('tax', 'float', [
 				'comment' => 'Amount of tax charged on payment',
 				'default' => null,
-				'limit' => 10,
 				'null' => true,
 			])
 			->addColumn('auth_id', 'string', [
@@ -301,7 +300,6 @@ class Init extends AbstractMigration
 			->addColumn('shipping', 'float', [
 				'comment' => 'Shipping charges associated with this transaction. Format unsigned, no currency symbol, two decimal places',
 				'default' => null,
-				'limit' => 10,
 				'null' => true,
 			])
 			->addColumn('transaction_entity', 'string', [
@@ -325,7 +323,6 @@ class Init extends AbstractMigration
 			->addColumn('exchange_rate', 'float', [
 				'comment' => 'Exchange rate used if a currency conversion occured',
 				'default' => null,
-				'limit' => 10,
 				'null' => true,
 			])
 			->addColumn('mc_currency', 'string', [
@@ -337,43 +334,36 @@ class Init extends AbstractMigration
 			->addColumn('mc_fee', 'float', [
 				'comment' => 'Transaction fee associated with the payment, mc_gross minus mc_fee equals the amount deposited into the receiver_email account. Equivalent to payment_fee for USD payments. If this amount is negative, it signifies a refund or reversal, and either ofthose p',
 				'default' => null,
-				'limit' => 10,
 				'null' => true,
 			])
 			->addColumn('mc_gross', 'float', [
 				'comment' => 'Full amount of the customer\'s payment',
 				'default' => null,
-				'limit' => 10,
 				'null' => true,
 			])
 			->addColumn('mc_handling', 'float', [
 				'comment' => 'Total handling charge associated with the transaction',
 				'default' => null,
-				'limit' => 10,
 				'null' => true,
 			])
 			->addColumn('mc_shipping', 'float', [
 				'comment' => 'Total shipping amount associated with the transaction',
 				'default' => null,
-				'limit' => 10,
 				'null' => true,
 			])
 			->addColumn('payment_fee', 'float', [
 				'comment' => 'USD transaction fee associated with the payment',
 				'default' => null,
-				'limit' => 10,
 				'null' => true,
 			])
 			->addColumn('payment_gross', 'float', [
 				'comment' => 'Full USD amount of the customers payment transaction, before payment_fee is subtracted',
 				'default' => null,
-				'limit' => 10,
 				'null' => true,
 			])
 			->addColumn('settle_amount', 'float', [
 				'comment' => 'Amount that is deposited into the account\'s primary balance after a currency conversion',
 				'default' => null,
-				'limit' => 10,
 				'null' => true,
 			])
 			->addColumn('settle_currency', 'string', [
@@ -439,37 +429,31 @@ class Init extends AbstractMigration
 			->addColumn('amount1', 'float', [
 				'comment' => 'Amount of payment for Trial period 1 for USD',
 				'default' => null,
-				'limit' => 10,
 				'null' => true,
 			])
 			->addColumn('amount2', 'float', [
 				'comment' => 'Amount of payment for Trial period 2 for USD',
 				'default' => null,
-				'limit' => 10,
 				'null' => true,
 			])
 			->addColumn('amount3', 'float', [
 				'comment' => 'Amount of payment for regular subscription  period 1 for USD',
 				'default' => null,
-				'limit' => 10,
 				'null' => true,
 			])
 			->addColumn('mc_amount1', 'float', [
 				'comment' => 'Amount of payment for trial period 1 regardless of currency',
 				'default' => null,
-				'limit' => 10,
 				'null' => true,
 			])
 			->addColumn('mc_amount2', 'float', [
 				'comment' => 'Amount of payment for trial period 2 regardless of currency',
 				'default' => null,
-				'limit' => 10,
 				'null' => true,
 			])
 			->addColumn('mc_amount3', 'float', [
 				'comment' => 'Amount of payment for regular subscription period regardless of currency',
 				'default' => null,
-				'limit' => 10,
 				'null' => true,
 			])
 			->addColumn('recurring', 'string', [
@@ -569,22 +553,18 @@ class Init extends AbstractMigration
 			])
 			->addColumn('mc_gross', 'float', [
 				'default' => null,
-				'limit' => 10,
 				'null' => true,
 			])
 			->addColumn('mc_shipping', 'float', [
 				'default' => null,
-				'limit' => 10,
 				'null' => true,
 			])
 			->addColumn('mc_handling', 'float', [
 				'default' => null,
-				'limit' => 10,
 				'null' => true,
 			])
 			->addColumn('tax', 'float', [
 				'default' => null,
-				'limit' => 10,
 				'null' => true,
 			])
 			->addColumn('created', 'datetime', [
